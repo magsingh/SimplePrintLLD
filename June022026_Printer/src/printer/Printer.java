@@ -5,8 +5,10 @@ import java.util.Queue;
 
 public class Printer {
 	private Queue<PrintItem> printQueue;
-	public Printer() {
+	private int floorNo = -1;
+	public Printer(int flrNo) {
 		printQueue = new LinkedList<>();
+		floorNo = flrNo;
 	}
 	
 	public void printDoc(PrintItem i) {
@@ -21,7 +23,7 @@ public class Printer {
 			return;
 		}
 		PrintItem i = printQueue.poll();
-		System.out.println("Printing: ");
+		System.out.println("Printer:" + floorNo + " Printing: ");
 		System.out.print("    ");
 		i.debugPrintItem();
 		System.out.println("");

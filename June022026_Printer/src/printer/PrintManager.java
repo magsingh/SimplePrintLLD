@@ -1,18 +1,32 @@
 package printer;
 
+import java.util.HashMap;
+import java.util.Iterator;
+
 public class PrintManager {
-	Printer mainPrinter;
+	final private int TOTAL_FLOORS = 5;
+	HashMap<Integer,Printer> printers;
 	public PrintManager() {
-		mainPrinter = new Printer();
+		printers = new HashMap<Integer, Printer>();
+		for (int i = 1; i <= TOTAL_FLOORS; i++) {
+			printers.put(i,new Printer(i));
+		}
 	}
 	
 	public void submitDocForPrint(PrintItem i) {
 		System.out.println("Doc submitted to printer!");
-		mainPrinter.printDoc(i);
-		System.out.println("");
+		int fNo = i.getFloorNo();
+		if (printers.containsKey(fNo)) {
+			printers.get(fNo).printDoc(i);
+			System.out.println("");
+		} else {
+			System.out.println("Printer not found");
+		}
 	}
 	
 	public void processAllPrints() {
-		mainPrinter.processAllPrintDocs();
+		for (Printer p : printers.values()) {
+			p.processAllPrintDocs();
+		}
 	}
 }
