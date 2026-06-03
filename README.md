@@ -34,3 +34,5 @@ Printing:
 
 Printing: 
      doc = Print doc 3 userID = 30
+
+<img width="402" height="612" alt="image" src="https://github.com/user-attachments/assets/a5828c2d-bd56-4bfd-8ee7-609e8a43aba1" />
