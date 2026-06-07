@@ -5,16 +5,24 @@ import java.util.Queue;
 
 public class Printer {
 	private Queue<PrintItem> printQueue;
+	private final int PRINT_Q_LIMIT = 2;
 	private int floorNo = -1;
+	
 	public Printer(int flrNo) {
 		printQueue = new LinkedList<>();
 		floorNo = flrNo;
 	}
 	
-	public void printDoc(PrintItem i) {
+	public boolean printDoc(PrintItem i) {
 		System.out.print("Print doc enqueued: "); 
 		i.debugPrintItem();
-		printQueue.offer(i);
+		if (printQueue.size() < PRINT_Q_LIMIT)
+			printQueue.offer(i);
+		else {
+			System.out.println("###ERROR: Floor " + floorNo + " Queue Full!###");
+			return false;
+		}
+		return true;
 	}
 	
 	public void processPrintDoc() {
@@ -33,5 +41,13 @@ public class Printer {
 		while (!printQueue.isEmpty()) {
 			processPrintDoc();
 		}
+	}
+	
+	public boolean isFull() {
+		System.out.println("Printer: " + floorNo + " printQueue.size = " + printQueue.size());
+		if (printQueue.size() < PRINT_Q_LIMIT) {
+			return false;
+		}
+		return true;
 	}
 }

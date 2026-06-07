@@ -13,6 +13,14 @@ public class User {
 		PrintItem d5 = new PrintItem("Print doc 5", 222, 2);
 		PrintItem d6 = new PrintItem("Print doc 6", 30, 4);
 		
+		PrintItem d7 = new PrintItem("Print doc 7", 30, 10);
+		
+		PrintItem d8 = new PrintItem("Print doc 8", 22, 3);
+		PrintItem d9 = new PrintItem("Print doc 9", 23, 3); //Print queue full
+		PrintItem d10 = new PrintItem("Print doc 10", 24, 3); //Print queue full
+		PrintItem d11 = new PrintItem("Print doc 11", 25, 3); //Print queue full
+		PrintItem d12 = new PrintItem("Print doc 12", 26, 3); //Print queue full
+		
 		PrintManager pm = new PrintManager();
 		pm.submitDocForPrint(d1);
 		pm.submitDocForPrint(d2);
@@ -20,6 +28,12 @@ public class User {
 		pm.submitDocForPrint(d4);
 		pm.submitDocForPrint(d5);
 		pm.submitDocForPrint(d6);
+		pm.submitDocForPrint(d7);
+		pm.submitDocForPrint(d8);
+		pm.submitDocForPrint(d9);
+		pm.submitDocForPrint(d10);
+		pm.submitDocForPrint(d11);
+		pm.submitDocForPrint(d12);
 		
 		pm.processAllPrints();
 	}
@@ -37,4 +51,9 @@ Facade Pattern (Lightweight)
 /*
 Version 2: (check commit history)
 Added support of multiple floors
+*/
+
+/*
+Version 3: (check commit history)
+If printer queue is full then print jobs get redirected to printer on nearest floor.
 */

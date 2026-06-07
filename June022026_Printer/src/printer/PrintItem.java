@@ -15,10 +15,14 @@ public class PrintItem {
 	}
 	
 	public void debugPrintItem() {
-		System.out.println(" doc = " + doc + " userID = " + userID);
+		System.out.println(" doc = '" + doc + "' userID = " + userID);
 	}
 	
 	public int getFloorNo() {
 		return floorNo;
+	}
+	
+	public String getDoc() {
+		return doc;
 	}
 }
