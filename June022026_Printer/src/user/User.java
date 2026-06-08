@@ -36,6 +36,13 @@ public class User {
 		pm.submitDocForPrint(d12);
 		
 		pm.processAllPrints();
+		
+		//Printer 2 is now OFFLINE
+		PrintItem d13 = new PrintItem("Print doc 13", 27, 2);
+		pm.submitDocForPrint(d13);
+		
+		pm.processAllPrints();
+		
 	}
 }
 

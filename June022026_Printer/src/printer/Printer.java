@@ -3,14 +3,18 @@ package printer;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import enums.PrinterStatus;
+
 public class Printer {
 	private Queue<PrintItem> printQueue;
 	private final int PRINT_Q_LIMIT = 2;
 	private int floorNo = -1;
+	private PrinterStatus printerStatus;
 	
 	public Printer(int flrNo) {
 		printQueue = new LinkedList<>();
 		floorNo = flrNo;
+		printerStatus = PrinterStatus.ONLINE;
 	}
 	
 	public boolean printDoc(PrintItem i) {
@@ -49,5 +53,17 @@ public class Printer {
 			return false;
 		}
 		return true;
+	}
+	
+	public boolean getPrinterStatus() {
+		System.out.println("Printer " + floorNo + " is " + printerStatus);
+		if (printerStatus == PrinterStatus.OFFLINE)
+			return false;
+		return true;
+		
+	}
+	
+	public void setPrinterStatus(PrinterStatus pStatus) {
+		printerStatus = pStatus;
 	}
 }

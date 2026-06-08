@@ -1,8 +1,9 @@
 package printer;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Scanner;
+
+import enums.PrinterStatus;
 
 public class PrintManager {
 	final private int TOTAL_FLOORS = 5;
@@ -15,13 +16,17 @@ public class PrintManager {
 	}
 	
 	public void submitDocForPrint(PrintItem i) {
-		System.out.println("Submitting doc '" + i.getDoc() + "' to printer!");
+		System.out.println("Submitting doc '" + i.getDoc() + "' to printer " + i.getFloorNo());
 		int fNo = i.getFloorNo();
 		if (printers.containsKey(fNo)) {
-			boolean res = printers.get(fNo).printDoc(i);
-//			System.out.println("res = " + res);
-			if (!res)
+			if (printers.get(fNo).getPrinterStatus()) {
+				boolean res = printers.get(fNo).printDoc(i);
+	//			System.out.println("res = " + res);
+				if (!res)
+					reroutePrint(i);
+			} else {
 				reroutePrint(i);
+			}
 		} else {
 			System.out.println("Printer " + i.getFloorNo() + " not found");
 		}
@@ -85,5 +90,7 @@ public class PrintManager {
 		for (Printer p : printers.values()) {
 			p.processAllPrintDocs();
 		}
+		//Simulate that printer on 2 goes OFFLINE
+		printers.get(2).setPrinterStatus(PrinterStatus.OFFLINE);
 	}
 }
